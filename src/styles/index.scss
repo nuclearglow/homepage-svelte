@@ -1,0 +1,50 @@
+@import 'modules/fonts';
+@import 'modules/variables';
+@import 'modules/animations';
+
+@import 'modules/display';
+@import 'modules/terminal';
+
+body,
+html {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+}
+
+body {
+  @include fontsize();
+
+  background-color: $background-color;
+  font-family: 'Hack', monospace;
+  color: $color;
+  display: flex;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+  justify-content: center;
+}
+
+pre {
+  font-family: 'Hack', monospace;
+}
+
+// firefox 68 css hack - oh no, back to the 90s
+@-moz-document url-prefix() {
+  html,
+  body {
+    font-size: 16px;
+  }
+
+  .display {
+    font-size: 16px;
+
+    @media (orientation: landscape) {
+      font-size: 16px;
+    }
+    @media (orientation: portrait) {
+      font-size: 16px;
+    }
+  }
+}

@@ -1,0 +1,105 @@
+.display {
+  @include fontsize();
+
+  position: relative;
+  min-height: -webkit-fill-available;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000;
+  width: 100vw;
+  height: 100vh;
+}
+
+.screen {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  margin-top: 0;
+  margin-left: 0;
+  background: #1e1e1e;
+  border-radius: 0;
+  overflow: hidden;
+  box-shadow: 0 0 1px 3px rgba(10, 10, 10, 0.7);
+
+  &::before {
+    @include fill();
+    z-index: -1;
+
+    content: '';
+    border-radius: 0;
+  }
+
+  &::after {
+    @include fill();
+    z-index: -1;
+
+    content: '';
+    opacity: 0.1;
+    background: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.2));
+  }
+}
+
+.wrapper {
+  @include fill();
+
+  transform-origin: 50% 50%;
+  transform: skewX(0.5deg);
+  animation: pulse 5s linear infinite;
+
+  &::before {
+    @include fill();
+
+    content: '';
+    background: radial-gradient(
+      ellipse at center,
+      rgba($gradient-bottom, 0) 0%,
+      rgba($gradient-bottom, 0.5) 100%
+    );
+    pointer-events: none;
+  }
+
+  &::after {
+    @include fill();
+
+    content: '';
+    opacity: 0.5;
+    background: radial-gradient(
+      ellipse at center,
+      rgba($gradient-inner, 1) 0%,
+      rgba($gradient-inner, 0) 100%
+    );
+    pointer-events: none;
+    animation: glow 2s linear infinite;
+  }
+}
+
+.interlace {
+  @include fill();
+
+  opacity: 0.25;
+  background: $interlace-background;
+  background-size: 100% $interlace-size;
+  background-repeat: repeat-y;
+}
+
+.envelope {
+  @include fill($envelope-margin, $envelope-margin, $envelope-margin, 0);
+  background: $envelope-background;
+  animation: skew 5s linear infinite;
+}
+
+.scanline {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: $scanline-height;
+  opacity: 0.1;
+  background: $scanline-background;
+  animation: scanline $scanline-speed ease-in-out infinite;
+  pointer-events: none;
+}
+
+.info {
+  z-index: 100;
+}
