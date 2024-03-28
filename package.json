@@ -11,7 +11,7 @@
     "lint": "prettier --check . && eslint .",
     "format": "prettier --write .",
     "prepare": "husky",
-    "deploy:remote": "node ./scripts/deploy.cjs",
+    "deploy:remote": "./scripts/deploy.sh",
     "deploy": "run-s build deploy:remote"
   },
   "devDependencies": {
